@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Menempuh Hidup Baru</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #fce4ec, #f8bbd0);
+            font-family: 'Georgia', serif;
+            color: #880e4f;
+            text-align: center;
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            cursor: pointer;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 10;
+            max-width: 80%;
+            animation: fadeIn 2s ease-in;
+        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        p { font-size: 1.2rem; line-height: 1.6; }
+
+        /* Kelopak Bunga */
+        .petal {
+            position: absolute;
+            background-color: #ffc0cb;
+            border-radius: 150% 0 150% 0;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="overlay" onclick="startApp()">
+        <h2>Klik untuk Membuka Pesan ❤️</h2>
+    </div>
+
+    <div class="card">
+        <h1>Happy Wedding!</h1>
+        <p>Selamat menempuh hidup baru untuk kedua mempelai.<br>
+        Semoga cinta kalian abadi, penuh berkah, dan selalu bahagia selamanya.</p>
+        <p style="font-size: 0.9rem; font-style: italic;">"Two souls, one heart."</p>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function startApp() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('bgMusic').play();
+            createPetals();
+        }
+
+        function createPetals() {
+            const petalCount = 50;
+            for (let i = 0; i < petalCount; i++) {
+                let petal = document.createElement('div');
+                petal.className = 'petal';
+                
+                // Variasi ukuran dan posisi
+                const size = Math.random() * 15 + 10 + 'px';
+                petal.style.width = size;
+                petal.style.height = size;
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.animationDuration = Math.random() * 3 + 2 + 's';
+                petal.style.delay = Math.random() * 5 + 's';
+                
+                document.body.appendChild(petal);
+            }
+        }
+    </script>
+</body>
+</html>
